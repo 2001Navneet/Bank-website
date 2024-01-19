@@ -33,4 +33,27 @@ document.addEventListener('keydown', function (e) {
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 section1.scrollIntoView({ behavior: 'smooth' });
-//implement smooth
+//implement smooth scrolling on page navigation using event delegation
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault(); // to prevent the scrolling behaviour as we click
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+//1.Add event listener to common parent element
+//2.Determine what element originiated the event
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  console.log(e.target);
+  //Matching stratergy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+    console.log(link);
+  }
+});
+//Tabbed Component
